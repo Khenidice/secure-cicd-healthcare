@@ -301,3 +301,4 @@ Industry standard: Netflix 4,000 deploys/day, Amazon every 11 seconds — same p
 This project is for academic purposes — Final Year Project — Systems Engineering — 2026
 
 **All tools used are free and open-source — zero licensing cost — can be implemented in ANY Nigerian hospital with internet and laptop**
+
