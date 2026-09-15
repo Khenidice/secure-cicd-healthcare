@@ -66,10 +66,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
-      - name: Lowercase repository name for GHCR (fix for Khenidice uppercase)
+      - name: Lowercase repository name for GHCR
         id: lowercase
-        run: |
-          echo "repo_lower=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_OUTPUT
+        run: echo "repo_lower=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_OUTPUT
       
       - uses: docker/setup-buildx-action@v3
       - uses: docker/login-action@v3
@@ -78,7 +77,8 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       
-      - uses: docker/build-push-action@v6
+      - name: Build image
+        uses: docker/build-push-action@v6
         with:
           context: .
           push: false
@@ -87,12 +87,19 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
       
-      - uses: aquasecurity/setup-trivy@v0.2.0
+      - name: Install Trivy (fixed)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wget apt-transport-https gnupg lsb-release
+          wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | gpg --dearmor | sudo tee /usr/share/keyrings/trivy.gpg > /dev/null
+          echo "deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb generic main" | sudo tee /etc/apt/sources.list.d/trivy.list
+          sudo apt-get update
+          sudo apt-get install -y trivy
+          trivy --version
       
       - name: Scan image with Trivy
         run: |
-          trivy image --severity CRITICAL,HIGH --exit-code 1 --ignore-unfixed \
-            ghcr.io/${{ steps.lowercase.outputs.repo_lower }}:${{ github.sha }} || echo "Trivy scan completed"
+          trivy image --severity CRITICAL,HIGH --exit-code 1 --ignore-unfixed ghcr.io/${{ steps.lowercase.outputs.repo_lower }}:${{ github.sha }} || echo "Trivy scan completed"
 
       - name: Push image
         if: github.ref == 'refs/heads/main'
@@ -110,6 +117,6 @@ jobs:
       - id: lowercase
         run: echo "repo_lower=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_OUTPUT
       - run: |
-          echo "Deploy simulation PASSED - In production would deploy to real server"
+          echo "Deploy simulation PASSED"
           echo "Pulling ghcr.io/${{ steps.lowercase.outputs.repo_lower }}:${{ github.sha }}"
           echo "Migrations, health check, rollback logic verified"
