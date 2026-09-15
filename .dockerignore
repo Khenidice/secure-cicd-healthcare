@@ -1,0 +1,12 @@
+.git
+.gitignore
+.venv
+__pycache__
+*.py[cod]
+*.sqlite3
+test*.xml
+bandit-report.json
+.env
+README.md
+.github
+static/

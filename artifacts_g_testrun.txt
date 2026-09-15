@@ -1,0 +1,34 @@
+Found 31 test(s).
+test_admin_dashboard_requires_admin_login (hospital.tests.AuthenticationTests.test_admin_dashboard_requires_admin_login) ... ok
+test_doctor_cannot_access_admin_dashboard (hospital.tests.AuthenticationTests.test_doctor_cannot_access_admin_dashboard) ... ok
+test_is_admin_group_assignment_on_signup (hospital.tests.AuthenticationTests.test_is_admin_group_assignment_on_signup) ... ok
+test_is_doctor_group_assignment_on_signup (hospital.tests.AuthenticationTests.test_is_doctor_group_assignment_on_signup) ... ok
+test_is_patient_group_assignment_on_signup (hospital.tests.AuthenticationTests.test_is_patient_group_assignment_on_signup) ... ok
+test_patient_lookup_view_redirects_anonymous (hospital.tests.AuthenticationTests.test_patient_lookup_view_redirects_anonymous) ... ok
+test_appointment_form_patient_required (hospital.tests.FormValidationTests.test_appointment_form_patient_required) ... ok
+test_contactus_form_invalid_email (hospital.tests.FormValidationTests.test_contactus_form_invalid_email) ... ok
+test_contactus_form_valid (hospital.tests.FormValidationTests.test_contactus_form_valid) ... ok
+test_doctor_form_invalid_department (hospital.tests.FormValidationTests.test_doctor_form_invalid_department) ... ok
+test_patient_appointment_form_requires_doctor (hospital.tests.FormValidationTests.test_patient_appointment_form_requires_doctor) ... ok
+test_patient_signup_form_requires_username (hospital.tests.FormValidationTests.test_patient_signup_form_requires_username) ... ok
+test_appointment_creation (hospital.tests.ModelTests.test_appointment_creation) ... ok
+test_discharge_details_total (hospital.tests.ModelTests.test_discharge_details_total) ... ok
+test_doctor_get_name (hospital.tests.ModelTests.test_doctor_get_name) ... ok
+test_doctor_string_representation (hospital.tests.ModelTests.test_doctor_string_representation) ... ok
+test_patient_get_name (hospital.tests.ModelTests.test_patient_get_name) ... ok
+test_patient_string_representation (hospital.tests.ModelTests.test_patient_string_representation) ... ok
+test_aboutus_page_renders (hospital.tests.UrlRoutingTests.test_aboutus_page_renders) ... ok
+test_adminclick_page_renders (hospital.tests.UrlRoutingTests.test_adminclick_page_renders) ... ok
+test_contactus_page_renders (hospital.tests.UrlRoutingTests.test_contactus_page_renders) ... ok
+test_doctorclick_page_renders (hospital.tests.UrlRoutingTests.test_doctorclick_page_renders) ... ok
+test_home_redirects_authenticated (hospital.tests.UrlRoutingTests.test_home_redirects_authenticated) ... ok
+test_patientclick_page_renders (hospital.tests.UrlRoutingTests.test_patientclick_page_renders) ... ok
+test_appointment_booking_creates_record (hospital.tests.WorkflowTests.test_appointment_booking_creates_record) ... ok
+test_appointment_defaults_to_pending (hospital.tests.WorkflowTests.test_appointment_defaults_to_pending) ... ok
+test_discharge_bill_calculation_possible (hospital.tests.WorkflowTests.test_discharge_bill_calculation_possible) ... ok
+test_doctor_status_defaults_false (hospital.tests.WorkflowTests.test_doctor_status_defaults_false) ... ok
+test_duplicate_username_rejected_by_auth (hospital.tests.WorkflowTests.test_duplicate_username_rejected_by_auth) ... ok
+test_patient_profile_pic_optional (hospital.tests.WorkflowTests.test_patient_profile_pic_optional) ... ok
+test_patient_signup_creates_patient_profile (hospital.tests.WorkflowTests.test_patient_signup_creates_patient_profile) ... ok
+Ran 31 tests in 2.737s
+OK
